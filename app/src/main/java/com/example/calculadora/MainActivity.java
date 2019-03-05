@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 
@@ -13,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     double operacion1;
     double operacion2;
     double result;
+    int igual=0;
     boolean inicio;
     String operacion="";
 
@@ -44,6 +46,17 @@ public class MainActivity extends AppCompatActivity {
         final Button btn_tangente = findViewById(R.id.tangente);
         final Button btn_grad_radia= findViewById(R.id.grados_radianes);
 
+        btn0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (inicio) {
+                    pantalla.setText(pantalla.getText().toString() + btn0.getText().toString());
+                } else {
+                    pantalla.setText(btn0.getText().toString());
+                    inicio = true;
+                }
+                             }
+                        });
         btn1.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
@@ -54,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                         else
                         {
                             pantalla.setText(btn1.getText().toString());
+                            inicio=true;
                         }
                                     }
                                 });
@@ -67,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                         else
                         {
                             pantalla.setText(btn2.getText().toString());
+                            inicio=true;
                         }
                                     }
                                 });
@@ -80,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                         else
                         {
                             pantalla.setText(btn3.getText().toString());
+                            inicio=true;
                         }
                         }
                     });
@@ -94,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
                             else
                             {
                                 pantalla.setText(btn4.getText().toString());
+                                inicio=true;
                             }
                         }
                     });
@@ -108,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
                             else
                             {
                                 pantalla.setText(btn5.getText().toString());
+                                inicio=true;
                             }
                         }
                     });
@@ -121,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
                             else
                             {
                                 pantalla.setText(btn6.getText().toString());
+                                inicio=true;
                             }
                         }
                     });
@@ -134,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
                             else
                             {
                                 pantalla.setText(btn7.getText().toString());
+                                inicio=true;
                             }
                         }
                     });
@@ -147,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
                             else
                             {
                                 pantalla.setText(btn8.getText().toString());
+                                inicio=true;
                             }
                         }
                     });
@@ -160,12 +181,15 @@ public class MainActivity extends AppCompatActivity {
                             else
                             {
                                 pantalla.setText(btn9.getText().toString());
+                                inicio=true;
                             }
                         }
                     });
         btn_suma.setOnClickListener(new View.OnClickListener()                    {
                         @Override
                         public void onClick (View v) {
+                            igual=0;
+
                            if(operacion=="")
                            {
                                operacion1=Double.parseDouble(pantalla.getText().toString());
@@ -181,19 +205,59 @@ public class MainActivity extends AppCompatActivity {
                                    pantalla.setText(String.valueOf(result));
                                    operacion1=result;
                                }
+                               if (operacion == "multi") {
+                                   operacion2 = Double.parseDouble(pantalla.getText().toString());
+                                   result = operacion1 * operacion2;
+                                   pantalla.setText(String.valueOf(result));
+                                   operacion1 = result;
+                               }
                            }
                         }
                     });
         btn_resta.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick (View v){
-                            result = operacion1 - operacion2;
-                            pantalla.setText(String.valueOf(result));
+                            igual=0;
+                            if(operacion=="")
+                            {
+                                operacion1=Double.parseDouble(pantalla.getText().toString());
+                                inicio=false;
+                                operacion="resta";
+                            }
+                            else
+                            {
+                                if (operacion=="suma")
+                                {
+                                    operacion2=Double.parseDouble(pantalla.getText().toString());
+                                    result=operacion1+operacion2;
+                                    pantalla.setText(String.valueOf(result));
+                                    operacion1=result;
+                                }
+                                if (operacion == "multi") {
+                                    operacion2 = Double.parseDouble(pantalla.getText().toString());
+                                    result = operacion1 * operacion2;
+                                    pantalla.setText(String.valueOf(result));
+                                    operacion1 = result;
+                                }
+                                if (operacion == "resta") {
+                                    operacion2 = Double.parseDouble(pantalla.getText().toString());
+                                    result = operacion1-operacion2;
+                                    pantalla.setText(String.valueOf(result));
+                                    operacion1 = result;
+                                }
+                                if (operacion == "division") {
+                                    operacion2 = Double.parseDouble(pantalla.getText().toString());
+                                    result = operacion1 / operacion2;
+                                    pantalla.setText(String.valueOf(result));
+                                    operacion1 = result;
+                                }
+                            }
                         }
                     });
         btn_multiplicacion.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick (View v){
+                            igual=0;
                             if(operacion=="")
                             {
                                 operacion1=Double.parseDouble(pantalla.getText().toString());
@@ -201,9 +265,28 @@ public class MainActivity extends AppCompatActivity {
                                 operacion="multi";
                             }
                             else {
+                                if (operacion=="suma")
+                                {
+                                    operacion2=Double.parseDouble(pantalla.getText().toString());
+                                    result=operacion1+operacion2;
+                                    pantalla.setText(String.valueOf(result));
+                                    operacion1=result;
+                                }
                                 if (operacion == "multi") {
                                     operacion2 = Double.parseDouble(pantalla.getText().toString());
                                     result = operacion1 * operacion2;
+                                    pantalla.setText(String.valueOf(result));
+                                    operacion1 = result;
+                                }
+                                if (operacion == "resta") {
+                                    operacion2 = Double.parseDouble(pantalla.getText().toString());
+                                    result = operacion1-operacion2;
+                                    pantalla.setText(String.valueOf(result));
+                                    operacion1 = result;
+                                }
+                                if (operacion == "division") {
+                                    operacion2 = Double.parseDouble(pantalla.getText().toString());
+                                    result = operacion1 / operacion2;
                                     pantalla.setText(String.valueOf(result));
                                     operacion1 = result;
                                 }
@@ -212,9 +295,38 @@ public class MainActivity extends AppCompatActivity {
                     });
         btn_division.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void onClick (View v){
-                            result = operacion1/operacion2;
-                            pantalla.setText(String.valueOf(result));
+                        public void onClick (View v) {
+                            igual=0;
+                            if (operacion == "") {
+                                operacion1 = Double.parseDouble(pantalla.getText().toString());
+                                inicio = false;
+                                operacion = "division";
+                            } else {
+                                if (operacion == "suma") {
+                                    operacion2 = Double.parseDouble(pantalla.getText().toString());
+                                    result = operacion1 + operacion2;
+                                    pantalla.setText(String.valueOf(result));
+                                    operacion1 = result;
+                                }
+                                if (operacion == "multi") {
+                                    operacion2 = Double.parseDouble(pantalla.getText().toString());
+                                    result = operacion1 * operacion2;
+                                    pantalla.setText(String.valueOf(result));
+                                    operacion1 = result;
+                                }
+                                if (operacion == "resta") {
+                                    operacion2 = Double.parseDouble(pantalla.getText().toString());
+                                    result = operacion1 - operacion2;
+                                    pantalla.setText(String.valueOf(result));
+                                    operacion1 = result;
+                                }
+                                if (operacion == "division") {
+                                    operacion2 = Double.parseDouble(pantalla.getText().toString());
+                                    result = operacion1 / operacion2;
+                                    pantalla.setText(String.valueOf(result));
+                                    operacion1 = result;
+                                }
+                            }
                         }
                     });
         btn_borrar.setOnClickListener(new View.OnClickListener() {
@@ -231,23 +343,44 @@ public class MainActivity extends AppCompatActivity {
         btn_igual.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick (View v){
-                            if(operacion=="suma")
-                            {
-                                operacion2=Double.parseDouble(pantalla.getText().toString());
-                                result=operacion1+Double.parseDouble(pantalla.getText().toString());
-                                pantalla.setText(String.valueOf(result));
-                                operacion1=result;
-                                operacion="";
+                            if(igual==0) {
+                                if (operacion == "suma") {
+                                    operacion2 = Double.parseDouble(pantalla.getText().toString());
+                                    result = operacion1 + Double.parseDouble(pantalla.getText().toString());
+                                    pantalla.setText(String.valueOf(result));
+                                    operacion1 = result;
+                                    operacion = "";
+                                    igual=1;
+                                }
+                                if (operacion == "multi") {
+                                    operacion2 = Double.parseDouble(pantalla.getText().toString());
+                                    result = operacion1 * Double.parseDouble(pantalla.getText().toString());
+                                    pantalla.setText(String.valueOf(result));
+                                    operacion1 = result;
+                                    operacion = "";
+                                    igual=1;
+                                }
+                                if (operacion == "resta") {
+                                    operacion2 = Double.parseDouble(pantalla.getText().toString());
+                                    result = operacion1 - Double.parseDouble(pantalla.getText().toString());
+                                    pantalla.setText(String.valueOf(result));
+                                    operacion1 = result;
+                                    operacion = "";
+                                    igual=1;
+                                }
+                                if (operacion == "division") {
+                                    operacion2 = Double.parseDouble(pantalla.getText().toString());
+                                    result = operacion1 / Double.parseDouble(pantalla.getText().toString());
+                                    pantalla.setText(String.valueOf(result));
+                                    operacion1 = result;
+                                    operacion = "";
+                                    igual=1;
+                                }
                             }
-                            if (operacion=="multi")
+                            else
                             {
-                                operacion2=Double.parseDouble(pantalla.getText().toString());
-                                result=operacion1*Double.parseDouble(pantalla.getText().toString());
-                                pantalla.setText(String.valueOf(result));
-                                operacion1=result;
-                                operacion="";
+                                Toast.makeText(getApplicationContext(),"Ya has pulsado el igual.",Toast.LENGTH_SHORT);
                             }
-
                         }
                     });
         btn_punto.setOnClickListener(new View.OnClickListener() {
