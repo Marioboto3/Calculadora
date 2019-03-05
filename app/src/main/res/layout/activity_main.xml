@@ -6,12 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/pantalla"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_span="2"
+        android:gravity="end"
+        android:text="@string/pantalla"
+        android:textSize="60sp"
+        app:layout_constraintBottom_toTopOf="@+id/tabla"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TableLayout
         android:id="@+id/tabla"
         android:layout_width="408dp"
         android:layout_height="440dp"
         android:layout_marginTop="291dp"
         android:layout_marginEnd="3dp"
+        android:background="@color/colorPrimary"
+        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTintMode="screen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,24 +59,18 @@
                 android:layout_height="wrap_content"
                 android:text="@string/tangente" />
 
-            <Button
-                android:id="@+id/grados_radianes"
-                style="@android:style/Widget.Material.Light.Button.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/grados_radianes" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/pantalla"
+            <Button
+                android:id="@+id/grados_radianes"
+                style="@android:style/Widget.Button.Inset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_span="2"
-                android:text="@string/pantalla" />
+                android:text="@string/grados_radianes" />
 
             <Button
                 android:id="@+id/borrar"
@@ -74,6 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/division" />
+
         </TableRow>
 
         <TableRow
@@ -190,7 +202,7 @@
 
             <Button
                 android:id="@+id/punto"
-                style="@android:style/Widget.Material.Light.Button.Borderless.Small"
+                style="@android:style/Widget.Material.Light.Button.Inset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/punto" />

@@ -34,4 +34,5 @@
     <string name="calculadora">calculadora</string>
     <string name="Encender">Encender</string>
     <string name="pantalla">0</string>
+    <string name="titulo">CALCULATOR</string>
 </resources>
