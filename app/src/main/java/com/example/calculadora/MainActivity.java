@@ -13,11 +13,8 @@ public class MainActivity extends AppCompatActivity {
     double operacion1;
     double operacion2;
     double result;
-    boolean sum=false;
-    double operaciones=0;
-    boolean inicio=false;
-    String unidad_angular = "DEG";
-    DecimalFormat decimales = new DecimalFormat("#.000");
+    boolean inicio;
+    String operacion="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,32 +47,39 @@ public class MainActivity extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-
-                                        operacion1 = 1;
-                                        pantalla.setText(btn1.getText().toString());
-                                        pantalla.setText(pantalla.getText().toString() + btn1.getText().toString());
+                                        if(inicio)
+                                        {
+                                            pantalla.setText(pantalla.getText().toString() + btn1.getText().toString());
+                                        }
+                                        else
+                                        {
+                                            pantalla.setText(btn1.getText().toString());
+                                        }
                                     }
                                 });
         btn2.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        if (operacion1 == 0) {
-                                            pantalla.setText(btn2.getText().toString());
-                                        } else {
+                                        if(inicio)
+                                        {
                                             pantalla.setText(pantalla.getText().toString() + btn2.getText().toString());
+                                        }
+                                        else
+                                        {
+                                            pantalla.setText(btn2.getText().toString());
                                         }
                                     }
                                 });
         btn3.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void onClick(View v) {
-                            if(operacion1==0)
+                        public void onClick(View v){
+                            if(inicio)
                             {
-                                operacion1=3;
-                            }
-                            else {
-                                operacion2 = 3;
                                 pantalla.setText(pantalla.getText().toString() + btn3.getText().toString());
+                            }
+                            else
+                            {
+                                pantalla.setText(btn3.getText().toString());
                             }
                         }
                     });
@@ -83,80 +87,102 @@ public class MainActivity extends AppCompatActivity {
 
                         @Override
                         public void onClick(View v) {
-                            if(operacion1==0)
+                            if(inicio)
                             {
-                                operacion1=4;
+                                pantalla.setText(pantalla.getText().toString() + btn4.getText().toString());
                             }
                             else
                             {
-                                operacion2=4;
+                                pantalla.setText(btn4.getText().toString());
                             }
-                            pantalla.setText(pantalla.getText().toString()+btn4.getText().toString());
                         }
                     });
         btn5.setOnClickListener(new View.OnClickListener() {
 
                         @Override
                         public void onClick(View v) {
-                            if (operacion1 == 0) {
-                                operacion1 = 5;
-                            } else {
-                                operacion2 = 5;
+                            if(inicio)
+                            {
+                                pantalla.setText(pantalla.getText().toString() + btn5.getText().toString());
                             }
-                            pantalla.setText(pantalla.getText().toString()+btn5.getText().toString());
+                            else
+                            {
+                                pantalla.setText(btn5.getText().toString());
+                            }
                         }
                     });
         btn6.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (operacion1 == 0) {
-                                operacion1 = 6;
-                            } else {
-                                operacion2 = 6;
+                            if(inicio)
+                            {
+                                pantalla.setText(pantalla.getText().toString() + btn6.getText().toString());
                             }
-                            pantalla.setText(pantalla.getText().toString()+btn6.getText().toString());
+                            else
+                            {
+                                pantalla.setText(btn6.getText().toString());
+                            }
                         }
                     });
         btn7.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (operacion1 == 0) {
-                                operacion1 = 7;
-                            } else {
-                                operacion2 = 7;
+                            if(inicio)
+                            {
+                                pantalla.setText(pantalla.getText().toString() + btn7.getText().toString());
                             }
-                            pantalla.setText(pantalla.getText().toString()+btn7.getText().toString());
+                            else
+                            {
+                                pantalla.setText(btn7.getText().toString());
+                            }
                         }
                     });
         btn8.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (operacion1 == 0) {
-                                operacion1 = 8;
-                            } else {
-                                operacion2 = 8;
+                            if(inicio)
+                            {
+                                pantalla.setText(pantalla.getText().toString() + btn8.getText().toString());
                             }
-                            pantalla.setText(pantalla.getText().toString()+btn8.getText().toString());
+                            else
+                            {
+                                pantalla.setText(btn8.getText().toString());
+                            }
                         }
                     });
         btn9.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (operacion1 == 0) {
-                                operacion1 = 9;
-                            } else {
-                                operacion2 = 9;
+                            if(inicio)
+                            {
+                                pantalla.setText(pantalla.getText().toString() + btn9.getText().toString());
                             }
-                            pantalla.setText(pantalla.getText().toString()+btn9.getText().toString());
+                            else
+                            {
+                                pantalla.setText(btn9.getText().toString());
+                            }
                         }
                     });
-        btn_suma.setOnClickListener(new View.OnClickListener()
-
-                    {
+        btn_suma.setOnClickListener(new View.OnClickListener()                    {
                         @Override
-                        public void onClick (View v){
-
-                    }
+                        public void onClick (View v) {
+                           if(operacion=="")
+                           {
+                               operacion1=Double.parseDouble(pantalla.getText().toString());
+                               inicio=false;
+                               operacion="suma";
+                           }
+                           else
+                           {
+                               if (operacion=="suma")
+                               {
+                                   operacion2=Double.parseDouble(pantalla.getText().toString());
+                                   result=operacion1+operacion2;
+                                   pantalla.setText(String.valueOf(result));
+                                   operacion1=result;
+                               }
+                           }
+                        }
                     });
         btn_resta.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -183,15 +209,24 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick (View v){
                             result = 0;
+                            operacion="";
                             operacion1=0;
                             operacion2=0;
-                            pantalla.setText(String.valueOf(result));
+                            pantalla.setText(String.valueOf(0));
+                            inicio=false;
                         }
                     });
         btn_igual.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick (View v){
-                            pantalla.setText(String.valueOf(result));
+                            if(operacion=="suma")
+                            {
+                                operacion2=Double.parseDouble(pantalla.getText().toString());
+                                result=operacion1+Double.parseDouble(pantalla.getText().toString());
+                                pantalla.setText(String.valueOf(result));
+                                operacion1=result;
+                                operacion="";
+                            }
                         }
                     });
         btn_punto.setOnClickListener(new View.OnClickListener() {
