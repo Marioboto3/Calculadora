@@ -22,7 +22,8 @@
 
     <TableLayout
         android:id="@+id/tabla"
-        android:layout_width="408dp"
+
+        android:layout_width="wrap_content"
         android:layout_height="440dp"
         android:layout_marginTop="291dp"
         android:layout_marginEnd="3dp"
@@ -35,13 +36,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TableRow
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <Button
                 android:id="@+id/seno"
                 style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="@string/seno" />
 
